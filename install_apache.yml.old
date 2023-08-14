@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install apache2 and php packages for Ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+      update_cache: yes
+    when:
+      - ansible_distribution == "Ubuntu"
+      - ansible_default_ipv4 is defined
